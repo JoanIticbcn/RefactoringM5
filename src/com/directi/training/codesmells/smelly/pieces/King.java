@@ -9,6 +9,10 @@ public class King extends Piece
         super(color, 'K');
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString()
     {

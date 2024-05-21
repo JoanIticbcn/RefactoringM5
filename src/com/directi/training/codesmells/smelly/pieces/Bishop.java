@@ -10,6 +10,10 @@ public abstract class Bishop extends Piece
         super(color, 'b');
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString()
     {

@@ -12,6 +12,12 @@ public class Rook extends Piece
         super(color);
     }
 
+    
+    /** 
+     * @param from
+     * @param to
+     * @return boolean
+     */
     public boolean isValidMove(Position from, Position to)
     {
         return MoveUtil.isHorizontalOrVerticalMove(from, to);

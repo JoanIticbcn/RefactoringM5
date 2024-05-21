@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  * @author Joan Montanyà, Hugo Sansegundo, Eric de la Mata
- * @see 
+ * @see https://github.com/JoanIticbcn/RefactoringM5
  */
 public class GameEngine
 {
@@ -63,6 +63,10 @@ public class GameEngine
         }
     }
 
+    
+    /** 
+     * @return Position
+     */
     private Position inputPosition()
     {
         int row = scanner.nextInt() - 1;

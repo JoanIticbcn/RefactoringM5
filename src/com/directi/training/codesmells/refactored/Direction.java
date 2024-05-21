@@ -10,6 +10,10 @@ public class Direction
         _columnOffset = columnOffset;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getRowOffset()
     {
         return _rowOffset;

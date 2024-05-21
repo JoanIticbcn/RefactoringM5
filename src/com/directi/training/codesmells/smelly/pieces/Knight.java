@@ -9,6 +9,10 @@ public abstract class Knight extends Piece
         super(color, 'k');
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString()
     {

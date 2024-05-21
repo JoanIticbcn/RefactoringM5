@@ -9,6 +9,10 @@ public abstract class Rook extends Piece
         super(color, 'r');
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString()
     {

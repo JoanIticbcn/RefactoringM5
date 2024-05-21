@@ -10,6 +10,12 @@ public class Pawn extends Piece
         super(color, 'p');
     }
 
+    
+    /** 
+     * @param from
+     * @param to
+     * @return boolean
+     */
     @Override
     public boolean isValidMove(Position from, Position to)
     {

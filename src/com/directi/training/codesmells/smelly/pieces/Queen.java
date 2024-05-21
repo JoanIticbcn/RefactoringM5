@@ -9,6 +9,10 @@ public class Queen extends Piece
         super(color, 'q');
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString()
     {

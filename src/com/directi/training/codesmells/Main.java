@@ -5,6 +5,11 @@ import com.directi.training.codesmells.smelly.chess.Player;
 
 import java.util.Scanner;
 
+
+/**
+ * @author Joan Montanyà, Hugo Sansegundo, Eric de la Mata
+ * @see https://github.com/JoanIticbcn/RefactoringM5
+ */
 public class Main
 {
     private static final Scanner scanner = new Scanner(System.in);

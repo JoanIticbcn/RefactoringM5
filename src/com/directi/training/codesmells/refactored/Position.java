@@ -12,6 +12,10 @@ public class Position
         _column = column;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getRow()
     {
         return _row;

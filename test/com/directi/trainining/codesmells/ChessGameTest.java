@@ -17,6 +17,12 @@ public class ChessGameTest
 
     private GameEngine _gameEngine;
 
+    
+    /** 
+     * @param from
+     * @param to
+     * @return boolean
+     */
     private boolean isValidMoveHelper(Position from, Position to) {
         return _gameEngine.isValidMove(new Move(from, to));
     }
