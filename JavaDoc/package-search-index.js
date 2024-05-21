@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.directi.training.codesmells"},{"l":"com.directi.training.codesmells.smelly"},{"l":"com.directi.training.codesmells.smelly.chess"},{"l":"com.directi.training.codesmells.smelly.pieces"}];updateSearchResults();
