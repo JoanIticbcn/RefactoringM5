@@ -3,7 +3,6 @@ package com.directi.trainining.codesmells;
 import com.directi.training.codesmells.smelly.Position;
 import com.directi.training.codesmells.smelly.chess.ChessBoard;
 import com.directi.training.codesmells.smelly.chess.GameEngine;
-import com.directi.training.codesmells.smelly.chess.Move;
 import com.directi.training.codesmells.smelly.chess.Player;
 import com.directi.training.codesmells.smelly.pieces.Knight;
 import com.directi.training.codesmells.smelly.pieces.Pawn;
@@ -24,11 +23,11 @@ public class ChessGameTest
      * @return boolean
      */
     private boolean isValidMoveHelper(Position from, Position to) {
-        return _gameEngine.isValidMove(new Move(from, to));
+        return _gameEngine.isValidMove(from, to);
     }
     
     private void makeMoveHelper(Position from, Position to) {
-        _gameEngine.makeMove(new Move(from, to));
+        _gameEngine.makeMove(from, to);
     }
 
     //DO NOT CHANGE ANY STATEMENT FROM CODE BELOW
@@ -88,7 +87,7 @@ public class ChessGameTest
     @Test
     public void testIsValidMoveOfKnightForSecondPlayer()
     {
-        _gameEngine.makeMove(new Move(new Position(6, 1), new Position(5, 1)));
+        _gameEngine.makeMove(new Position(6, 1), new Position(5, 1));
         Position fromPosition = new Position(0, 1);
         Position toPosition = new Position(2, 0);
         assertTrue(isValidMoveHelper(fromPosition, toPosition));

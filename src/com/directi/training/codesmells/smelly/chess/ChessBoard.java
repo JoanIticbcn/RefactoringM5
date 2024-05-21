@@ -3,21 +3,20 @@ package com.directi.training.codesmells.smelly.chess;
 import com.directi.training.codesmells.smelly.Color;
 import com.directi.training.codesmells.smelly.Direction;
 import com.directi.training.codesmells.smelly.Position;
-import com.directi.training.codesmells.smelly.pieces.King;
-import com.directi.training.codesmells.smelly.pieces.Knight;
-import com.directi.training.codesmells.smelly.pieces.Pawn;
-import com.directi.training.codesmells.smelly.pieces.Piece;
+import com.directi.training.codesmells.smelly.pieces.*;
 
 public class ChessBoard
 {
+    private static final int BOARD_SIZE = 8;
     private final Cell[][] _board;
-    public boolean _kingDead;
+    public boolean _kingDead; //Hauria de ser privat
     public Player player1, player2;
 
     public ChessBoard()
     {
         _board = new Cell[8][8];
         initBoard();
+        resetBoard();
     }
 
     private void initBoard()
@@ -30,6 +29,59 @@ public class ChessBoard
         }
     }
 
+    public void resetBoard(){
+        placePieces(Color.WHITE);
+        placePieces(Color.BLACK);
+        _kingDead = false;
+    }
+
+    private void placePieces(Color color)
+    {
+        int pawnsRow, otherPiecesRow;
+        switch (color) {
+            case WHITE:
+                pawnsRow = BOARD_SIZE - 2;
+                otherPiecesRow = BOARD_SIZE - 1;
+                break;
+            case BLACK:
+                pawnsRow = 1;
+                otherPiecesRow = 0;
+                break;
+            default:
+                System.err.println("Unexpected color passed to placePieces.");
+                return;
+        }
+        placeOtherPieces(otherPiecesRow, color);
+        placePawns(pawnsRow, color);
+    }
+
+    private void placePawns(int row, Color color)
+    {
+        for (int column = 0; column < BOARD_SIZE; column++) {
+            _board[row][column].setPiece(new Pawn(color));
+        }
+    }
+
+    private void placeOtherPieces(int row, Color color)
+    {
+        for (int column = 0; column < BOARD_SIZE; column++) {
+            Piece piece = null;
+            if (column == 0 || column == BOARD_SIZE - 1) {
+                piece = new Rook(color);
+            } else if (column == 1 || column == BOARD_SIZE - 2) {
+                piece = new Knight(color);
+            } else if (column == 2 || column == BOARD_SIZE - 3) {
+                piece = new Bishop(color);
+            } else if (column == 3) {
+                piece = new King(color);
+            } else if (column == 4) {
+                piece = new Queen(color);
+            }
+            _board[row][column].setPiece(piece);
+        }
+    }
+
+    //mai s'utilitza
     public Cell[][] getBoard()
     {
         return _board;
@@ -72,18 +124,8 @@ public class ChessBoard
         }
     }
 
-    private void printMove(Position from, Position to)
-    {
-        System.out.println(getPlayerName(from) + " moved " + getPiece(from) + " from " + from + " to " + to);
-        if (getPiece(from).getColor() != getPiece(to).getColor()) {
-            System.out.println("And has captured " + getPiece(to) + " of " + getPlayerName(to));
-        }
-    }
 
-    public boolean isValidMove(int fromRow, int fromColumn, int toRow, int toColumn)
-    {
-        Position from = new Position(fromRow, fromColumn);
-        Position to = new Position(toRow, toColumn);
+    public boolean isValidMove(Position from, Position to){
         return !from.equals(to)
                && !(isPositionOutOfBounds(from) || isPositionOutOfBounds(to))
                && !isEmpty(from)
@@ -126,20 +168,18 @@ public class ChessBoard
         return new Position(from.getRow() + direction.getRowOffset(), from.getColumn() + direction.getColumnOffset());
     }
 
-    public void movePiece(int fromRow, int fromColumn, int toRow, int toColumn)
+    public void movePiece(Position from, Position to)
     {
-        Position from = new Position(fromRow, fromColumn);
-        Position to = new Position(toRow, toColumn);
-        updateIsKingDead(toRow, toColumn);
+        updateIsKingDead(to);
         if (!getCell(to).isEmpty())
             getCell(to).removePiece();
         getCell(to).setPiece(getPiece(from));
         getCell(from).removePiece();
     }
 
-    private void updateIsKingDead(int row, int column)
+    private void updateIsKingDead(Position to)
     {
-        if (getPiece(new Position(row, column)) instanceof King) {
+        if (getPiece(to) instanceof King) {
             _kingDead = true;
         }
     }
@@ -187,4 +227,5 @@ public class ChessBoard
         }
         return stringBuilder.toString();
     }
+    
 }

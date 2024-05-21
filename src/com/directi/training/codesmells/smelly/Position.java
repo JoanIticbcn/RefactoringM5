@@ -25,6 +25,10 @@ public class Position
         return _column;
     }
 
+    public Position translaPosition(Direction direccio){
+        return new Position(getRow()+direccio.getRowOffset(), getColumn()+direccio.getColumnOffset());
+    }
+
     @Override
     public String toString()
     {

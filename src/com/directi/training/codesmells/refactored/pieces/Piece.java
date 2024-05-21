@@ -13,9 +13,6 @@ public abstract class Piece
     }
 
     
-    /** 
-     * @return Color
-     */
     public Color getColor()
     {
         return _color;

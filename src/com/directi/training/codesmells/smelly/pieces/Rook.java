@@ -1,15 +1,20 @@
 package com.directi.training.codesmells.smelly.pieces;
 
+import com.directi.training.codesmells.smelly.Position;
+import com.directi.training.codesmells.smelly.chess.MoveUtil;
 import com.directi.training.codesmells.smelly.Color;
 
-public abstract class Rook extends Piece
+public class Rook extends Piece
 {
     public Rook(Color color)
     {
-        super(color, 'r');
+        super(color);
     }
 
-    
+    public boolean isValidMove(Position from, Position to)
+    {
+        return MoveUtil.isHorizontalOrVerticalMove(from, to);
+    }
     /** 
      * @return String
      */
